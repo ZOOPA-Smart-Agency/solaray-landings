@@ -434,6 +434,15 @@ section[id]{scroll-margin-top:66px}
   #rutina .r-foot{margin-top:clamp(10px,1.6vh,18px)}
 }
 
+/* ---------- modo exportación a Figma (?figma=1): todo visible y quieto ---------- */
+.figma .reveal{opacity:1!important;transform:none!important;transition:none!important}
+.figma .rinde i,.figma .rinde span,.figma .rinde svg{animation:none!important}
+.figma .rinde i{right:var(--kout)}
+.figma .rinde span{background-position:0 0}
+.figma .track{animation:none}
+.figma .art img{transform:none}
+.figma .rays{animation:none}
+
 /* ---------- responsive ---------- */
 @media (max-width:1020px){
   .pack-cta-wrap{max-width:620px}
@@ -1251,12 +1260,12 @@ section[id]{scroll-margin-top:66px}
   const len = arc.getTotalLength();
   const moments = $$('.moment');
   const marks = moments.map(m => +m.dataset.at);
-  let ticking = false;
+  let ticking = false, freeze = null;
   function moveSun() {
     ticking = false;
     const r = wrap.getBoundingClientRect(), vh = innerHeight;
     const span = $('.moments').getBoundingClientRect().bottom - r.top;
-    const p = Math.min(1, Math.max(0, (vh * 0.6 - r.top) / span));
+    const p = freeze !== null ? freeze : Math.min(1, Math.max(0, (vh * 0.6 - r.top) / span));
     const pt = arc.getPointAtLength(p * len);
     sun.setAttribute('transform', `translate(${pt.x.toFixed(1)} ${pt.y.toFixed(1)})`);
     const n = Math.min(1, Math.max(0, (pt.x - marks[1]) / (marks[2] - marks[1])));
@@ -1278,6 +1287,17 @@ section[id]{scroll-margin-top:66px}
     sticky.classList.toggle('show', past && !inView(buy) && !inView(fin) && !inView(packBar) && !inView(rutinaCta));
     if (!ticking) { ticking = true; requestAnimationFrame(moveSun); }
   }
+  /* ---------- estados fijos para exportar a Figma: ?figma=1&panel=1..6&compra=custom&vitc=30|100&sol=manana|mediodia|tarde|noche ---------- */
+  const q = new URLSearchParams(location.search);
+  if (q.has('figma')) {
+    document.documentElement.classList.add('figma');
+    $$('.reveal').forEach(el => el.classList.add('in'));
+  }
+  if (q.has('vitc')) { const b = $(`[data-vitc="${q.get('vitc')}"]`); if (b) b.click(); }
+  if (q.get('compra') === 'custom') $('input[value=custom]').click();
+  if (q.has('panel')) { const i = Math.min(6, Math.max(1, +q.get('panel') || 1)) - 1; $('.p-hit', panels[i]).click(); }
+  if (q.has('sol')) { const map = { manana: .2, mediodia: .5, tarde: .72, noche: .88 }; const v = map[q.get('sol')]; if (v !== undefined) freeze = v; }
+
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onScroll);
   onScroll();

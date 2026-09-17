@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía de estilo · Landing Pack Energía y Foco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#11153A; --ink-2:#3B3F5C; --muted:#707486;
+  --paper:#F4F5F7; --paper-2:#E6EAF0; --white:#FFFFFF;
+  --line:rgba(17,21,58,.12); --line-2:rgba(17,21,58,.24);
+  --yellow:#F4C44E; --yellow-soft:#FBE3A0; --yellow-pale:#FFF7E0;
+  --blue:#1F56A0;
+  --t1:#11153A; --t2:#1F56A0; --t3:#6F93C8; --t4:#C3D2E8;
+  --ok:#2E7A55; --green:#76CC51;
+  --sans:'Archivo',system-ui,sans-serif; --serif:'Instrument Serif',Georgia,serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55}
+.wrap{max-width:1100px;margin:0 auto;padding:clamp(28px,5vw,72px) clamp(16px,4vw,48px)}
+h1{margin:14px 0 6px;font-stretch:116%;font-weight:800;text-transform:uppercase;font-size:clamp(34px,5vw,64px);line-height:.95}
+h1 em{font-family:var(--serif);font-style:italic;font-weight:400;font-stretch:100%;text-transform:none;color:var(--blue)}
+h2{margin:56px 0 14px;font-stretch:112%;font-weight:750;text-transform:uppercase;font-size:22px;letter-spacing:.02em}
+.eyebrow{margin:0;font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.lede{max-width:60ch;color:var(--ink-2)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.sw{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--white)}
+.sw .c{height:84px}
+.sw .t{padding:10px 12px;font-size:12px}
+.sw b{display:block;font-size:13px}
+.sw code{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:14px}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:650}
+tr:last-child td{border-bottom:0}
+.type{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:10px}
+.type p{margin:0}
+.type small{display:block;margin-top:8px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.d1{font-stretch:116%;font-weight:830;text-transform:uppercase;font-size:56px;line-height:.9;letter-spacing:-.01em}
+.d1 em{font-family:var(--serif);font-style:italic;font-weight:400;font-stretch:100%;text-transform:none;color:var(--blue);font-size:.78em}
+.d2{font-stretch:116%;font-weight:800;text-transform:uppercase;font-size:40px;line-height:.95}
+.d3{font-stretch:110%;font-weight:780;text-transform:uppercase;font-size:20px}
+.kick{font-family:var(--serif);font-style:italic;font-size:30px;line-height:1.05}
+.lbl{font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.comp{display:flex;flex-wrap:wrap;gap:14px;align-items:center;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px}
+.btn{display:inline-flex;align-items:center;gap:12px;border:0;border-radius:999px;background:var(--ink);color:#fff;font:inherit;font-weight:650;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;padding:15px 24px}
+.btn .pill{background:var(--yellow);color:var(--ink);border-radius:999px;padding:11px 16px;letter-spacing:.03em}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-2)}
+.rinde{display:inline-flex;align-items:center;height:58px;padding:4px 75px 4px 64px;border-radius:999px;position:relative;
+  background:linear-gradient(90deg,rgba(255,255,255,.28),rgba(255,255,255,.5));box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.85),0 12px 28px -14px rgba(17,21,58,.28)}
+.rinde span{font-size:28px;font-weight:560;letter-spacing:.045em;text-transform:uppercase;line-height:1}
+.rinde i{position:absolute;right:7px;top:4px;width:50px;height:50px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 3px 10px -2px rgba(17,21,58,.16)}
+.note{margin-top:10px;font-size:12.5px;color:var(--muted)}
+a{color:var(--blue)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Solaray · Vuelve a tu ritmo</p>
+  <h1>Guía <em>de estilo</em></h1>
+  <p class="lede">Colores, tipografías y medidas de la landing del Pack Energía y Foco. Sirve para crear los estilos en Figma y para mantener el mismo lenguaje en las landings de Vuelta al gym y Calma y dormir.</p>
+
+  <h2>Color</h2>
+  <div class="grid">
+    <div class="sw"><div class="c" style="background:#11153A"></div><div class="t"><b>Azul marino</b><code>#11153A</code><br><span class="lbl">Texto y fondos oscuros</span></div></div>
+    <div class="sw"><div class="c" style="background:#3B3F5C"></div><div class="t"><b>Azul marino 2</b><code>#3B3F5C</code><br><span class="lbl">Texto secundario</span></div></div>
+    <div class="sw"><div class="c" style="background:#707486"></div><div class="t"><b>Gris texto</b><code>#707486</code><br><span class="lbl">Etiquetas y notas</span></div></div>
+    <div class="sw"><div class="c" style="background:#F4F5F7"></div><div class="t"><b>Fondo</b><code>#F4F5F7</code><br><span class="lbl">Fondo general</span></div></div>
+    <div class="sw"><div class="c" style="background:#E6EAF0"></div><div class="t"><b>Fondo 2</b><code>#E6EAF0</code><br><span class="lbl">Cajas y miniaturas</span></div></div>
+    <div class="sw"><div class="c" style="background:#FFFFFF"></div><div class="t"><b>Blanco</b><code>#FFFFFF</code><br><span class="lbl">Tarjetas</span></div></div>
+    <div class="sw"><div class="c" style="background:#F4C44E"></div><div class="t"><b>Amarillo etiqueta</b><code>#F4C44E</code><br><span class="lbl">Precios y acentos</span></div></div>
+    <div class="sw"><div class="c" style="background:#FBE3A0"></div><div class="t"><b>Amarillo suave</b><code>#FBE3A0</code><br><span class="lbl">Barra superior</span></div></div>
+    <div class="sw"><div class="c" style="background:#FFF7E0"></div><div class="t"><b>Amarillo pálido</b><code>#FFF7E0</code><br><span class="lbl">Opción elegida</span></div></div>
+    <div class="sw"><div class="c" style="background:#1F56A0"></div><div class="t"><b>Azul Omega</b><code>#1F56A0</code><br><span class="lbl">Cursivas y gráficos</span></div></div>
+    <div class="sw"><div class="c" style="background:#2E7A55"></div><div class="t"><b>Verde ahorro</b><code>#2E7A55</code><br><span class="lbl">Solo textos de ahorro</span></div></div>
+    <div class="sw"><div class="c" style="background:#76CC51"></div><div class="t"><b>Verde rayo</b><code>#76CC51</code><br><span class="lbl">Icono de la etiqueta RINDE</span></div></div>
+  </div>
+  <p class="note">Escala para gráficos (barras, tabla y duración): <code>#11153A</code> · <code>#1F56A0</code> · <code>#6F93C8</code> · <code>#C3D2E8</code>. Líneas: negro al 12 % y al 24 %. Tarjetas de «Qué lleva»: solo grises (<code>#1A1A1A</code>, <code>#4D4D4D</code>, <code>#737373</code>, <code>#F2F2F2</code>).</p>
+
+  <h2>Tipografía</h2>
+  <div class="type"><p class="d1">Energía <em>y</em> foco</p><small>Archivo · ancho 116 % · peso 830 · 50–104 px · interlineado 0,9 · mayúsculas</small></div>
+  <div class="type"><p class="d2">Beneficios</p><small>Títulos de sección · Archivo · ancho 116 % · peso 800 · 34–72 px</small></div>
+  <div class="type"><p class="kick">Vuelve a tu ritmo</p><small>Instrument Serif · cursiva · 26–34 px</small></div>
+  <div class="type"><p class="d3">Opti-5 Magnesium Complex</p><small>Títulos de tarjeta · Archivo · ancho 110 % · peso 780 · 20–21 px</small></div>
+  <div class="type"><p>Texto corrido de la página. Magnesio en 5 formas, vitamina C liposomal y omega 3 con EPA y DHA.</p><small>Archivo · peso 400 · 15–17 px · interlineado 1,55</small></div>
+  <div class="type"><p class="lbl">Qué hace · Duración · Aporta</p><small>Etiquetas · Archivo · peso 600 · 10,5–12 px · espaciado entre letras 0,16–0,22 em · mayúsculas</small></div>
+
+  <h2>Medidas</h2>
+  <table>
+    <tr><th>Elemento</th><th>Valor</th></tr>
+    <tr><td>Ancho máximo de contenido</td><td>1280 px (gráfico del sol y rutina: 1100 px)</td></tr>
+    <tr><td>Margen lateral</td><td>16 px en móvil · 56 px en ordenador</td></tr>
+    <tr><td>Alto de la cabecera fija</td><td>66 px</td></tr>
+    <tr><td>Aire entre secciones</td><td>72–136 px arriba y abajo</td></tr>
+    <tr><td>Redondeos</td><td>Tarjetas 14–24 px · Fotos grandes 22–28 px · Botones y etiquetas, redondeo completo</td></tr>
+    <tr><td>Botones</td><td>Alto 48 px (15 px arriba y abajo, 24 px a los lados) · texto 12,5 px con 0,14 em de espaciado</td></tr>
+    <tr><td>Etiqueta RINDE</td><td>Alto 58 px · círculo 50 px · texto 28 px (móvil: 48 / 40 / 23 px)</td></tr>
+    <tr><td>Sombras</td><td>Tarjetas: 0 12 px 28 px −14 px de azul marino al 28 % · Botón: 0 12 px 26 px −16 px al 70 %</td></tr>
+    <tr><td>Paneles de beneficios</td><td>Cerrado 1 parte · abierto 4,6 partes · alto 480–600 px · velo oscuro arriba (40 %) y abajo (74 %)</td></tr>
+  </table>
+
+  <h2>Componentes</h2>
+  <div class="comp">
+    <span class="btn">Consigue el pack <span class="pill">78,26 €</span></span>
+    <span class="btn">Añadir pack al carrito</span>
+    <span class="btn ghost">Solo este · 36,51 €</span>
+    <span class="rinde"><span>Rinde</span><i><svg viewBox="0 0 24 24" width="26" height="26"><path d="M14.5 2 5 13.5h6.2L9.5 22 19 10.5h-6.2z" fill="#76CC51"/></svg></i></span>
+  </div>
+
+  <h2>Imágenes</h2>
+  <table>
+    <tr><th>Archivo</th><th>Uso</th></tr>
+    <tr><td>hero-pack-energia-y-foco.jpg</td><td>Foto de portada (1231 × 1278)</td></tr>
+    <tr><td>panel-energia · foco · metabolismo · defensas · musculo · corazon .webp</td><td>Fotos de los seis paneles de «Qué hace» (1254 × 1254)</td></tr>
+    <tr><td>cielo.webp</td><td>Cielo del gráfico del sol</td></tr>
+    <tr><td>bote-vitamina-c · bote-opti-5 .webp</td><td>Botes sin fondo</td></tr>
+    <tr><td>kv-activate · kv-descansa .webp</td><td>Fotos de los otros dos packs</td></tr>
+  </table>
+  <p class="note">El bote del Omega 3 450/300 se carga desde la web de Solaray-KAL. Tipografías: <a href="https://fonts.google.com/specimen/Archivo">Archivo</a> e <a href="https://fonts.google.com/specimen/Instrument+Serif">Instrument Serif</a>, las dos gratuitas de Google Fonts.</p>
+</div>
+</body>
+</html>
