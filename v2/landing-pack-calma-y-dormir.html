@@ -379,12 +379,20 @@ details.acc:last-of-type{border-bottom:1px solid var(--line)}
 .brands span{padding:8px 14px;border-radius:999px;border:1px solid var(--line-2);font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
 .brands .lbl{border:0;padding-left:0;color:var(--muted)}
 
-/* ---------- reseñas (hueco) ---------- */
-.rev-grid{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.rev{padding:22px;border-radius:var(--r);border:1px dashed var(--line-2);background:rgba(255,255,255,.5)}
-.rev .stars{width:84px;height:14px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 136 24' fill='%2311153A' fill-opacity='.24'><path transform='translate(0 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(28 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(56 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(84 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(112 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/></svg>") left center/auto 100% no-repeat}
-.skel{height:9px;border-radius:5px;background:var(--paper-2);margin-top:10px}
-.rev small{display:block;margin-top:16px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+/* ---------- reseñas: seis opiniones, separadas por líneas ---------- */
+.rev-grid{--g:clamp(18px,2.4vw,32px);max-width:var(--maxw);margin:0 auto;padding:0 calc(var(--pad) - var(--g));display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.rev{display:flex;flex-direction:column;gap:12px;margin:0;padding:clamp(20px,2.4vw,30px) var(--g)}
+.rev:not(:nth-child(3n+1)){border-left:1px solid var(--line-2)}
+.rev:nth-child(n+4){border-top:1px solid var(--line-2)}
+.rev .stars{width:80px;height:14px;background:linear-gradient(90deg,var(--yellow) 0 calc(var(--n) / 5 * 100%),var(--line-2) 0);-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 136 24'><path transform='translate(0 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(28 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(56 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(84 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(112 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/></svg>") center/100% 100% no-repeat;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 136 24'><path transform='translate(0 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(28 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(56 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(84 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(112 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/></svg>") center/100% 100% no-repeat}
+.rev blockquote{margin:0;font-size:15px;line-height:1.55}
+.rev figcaption{margin-top:auto;padding-top:6px;font-size:13px;font-weight:650}
+.rev figcaption span{display:block;margin-top:2px;font-weight:500;color:var(--muted)}
+@media (max-width:860px){
+  .rev-grid{grid-template-columns:minmax(0,1fr)}
+  .rev:not(:nth-child(3n+1)){border-left:0}
+  .rev+.rev{border-top:1px solid var(--line-2)}
+}
 
 /* ---------- FAQ ---------- */
 .faq-grid{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,80px);align-items:start}
@@ -1096,16 +1104,43 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
   </button>
 </section>
 
-<!-- ================= RESEÑAS (hueco) ================= -->
+<!-- ================= RESEÑAS ================= -->
 <section class="sec" id="resenas">
   <div class="sec-head center reveal">
     <h2 class="h2">Opiniones de clientes</h2>
-    <p class="sub">Aquí irán las reseñas verificadas.</p>
+    <p class="sub">Reseñas de clientes en solaray.com, traducidas del inglés.</p>
   </div>
   <div class="rev-grid">
-    <div class="rev reveal"><div class="stars" aria-hidden="true"></div><div class="skel" style="width:90%"></div><div class="skel" style="width:100%"></div><div class="skel" style="width:70%"></div><small>Reseña verificada pendiente</small></div>
-    <div class="rev reveal"><div class="stars" aria-hidden="true"></div><div class="skel" style="width:95%"></div><div class="skel" style="width:80%"></div><div class="skel" style="width:60%"></div><small>Reseña verificada pendiente</small></div>
-    <div class="rev reveal"><div class="stars" aria-hidden="true"></div><div class="skel" style="width:85%"></div><div class="skel" style="width:100%"></div><div class="skel" style="width:75%"></div><small>Reseña verificada pendiente</small></div>
+    <figure class="rev reveal" style="--n:4">
+      <div class="stars" role="img" aria-label="4 de 5 estrellas"></div>
+      <blockquote>«Tiene un efecto relajante sutil. Perfecto para las noches después de darlo todo en el gimnasio o en el trabajo; se nota que va bien para relajar el músculo.»</blockquote>
+      <figcaption>Charles H.<span>Magnesium Glycinate · marzo de 2025</span></figcaption>
+    </figure>
+    <figure class="rev reveal" style="--n:5">
+      <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+      <blockquote>«Gran marca, llevo tiempo usándola. A mí y a mi familia nos funciona perfectamente.»</blockquote>
+      <figcaption>Troy K.<span>Magnesium Glycinate · diciembre de 2024</span></figcaption>
+    </figure>
+    <figure class="rev reveal" style="--n:5">
+      <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+      <blockquote>«Me duermo en menos de una hora y suele durarme cuatro o cinco. Ya no me acuesto sin ella.»</blockquote>
+      <figcaption>Carol L.<span>Melatonin with Glycine · agosto de 2025</span></figcaption>
+    </figure>
+    <figure class="rev reveal" style="--n:5">
+      <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+      <blockquote>«Esta melatonina me funciona mejor que la de muchas otras marcas.»</blockquote>
+      <figcaption>Victor B.<span>Melatonin with Glycine · agosto de 2026</span></figcaption>
+    </figure>
+    <figure class="rev reveal" style="--n:5">
+      <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+      <blockquote>«Llevo un tiempo tomando esta raíz de ashwagandha. Se nota la diferencia y es un suplemento de calidad.»</blockquote>
+      <figcaption>Susan B.<span>Ashwagandha · abril de 2026</span></figcaption>
+    </figure>
+    <figure class="rev reveal" style="--n:4">
+      <div class="stars" role="img" aria-label="4 de 5 estrellas"></div>
+      <blockquote>«Un extracto de raíz de ashwagandha estupendo. Se absorbe bien, funciona y pienso repetir.»</blockquote>
+      <figcaption>Thomas E.<span>Ashwagandha · agosto de 2024</span></figcaption>
+    </figure>
   </div>
 </section>
 
