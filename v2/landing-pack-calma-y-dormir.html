@@ -275,6 +275,7 @@ details.acc:last-of-type{border-bottom:1px solid var(--line)}
 
 /* ---------- compra del pack bajo las fichas ---------- */
 .pack-cta-wrap{max-width:var(--maxw);margin:16px auto 0;padding:0 var(--pad)}
+#packs .pack-cta-wrap{margin:0 auto 16px}          /* el mismo hueco que hay entre las dos fotos */
 .pack-cta{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;grid-template-areas:"b c p a";align-items:center;gap:clamp(16px,2.4vw,36px);padding:16px clamp(18px,2.6vw,34px);border-radius:var(--r);background:var(--ink);color:#fff}
 .pc-bottles{grid-area:b;display:flex;align-items:flex-end;height:118px;padding:4px 6px 2px}
 .pc-bottles img{height:84%;width:auto;object-fit:contain;margin:0 -4px;filter:drop-shadow(0 10px 12px rgba(0,0,0,.35))}
@@ -493,8 +494,13 @@ section[id]{scroll-margin-top:66px}
 @keyframes rindeKnobL{from{left:calc(100% - var(--k) - var(--kin))}to{left:var(--kout)}}
 .js .rinde.left span{background-image:linear-gradient(90deg,rgba(17,21,58,var(--tin)) 0 50%,var(--ink) 50% 100%);animation:rindeTextL 1.2s cubic-bezier(.65,0,.35,1) .9s both}
 @keyframes rindeTextL{0%,12%{background-position:0 0}80%,100%{background-position:100% 0}}
-img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
 @keyframes twinkle{0%,100%{opacity:.25}50%{opacity:.95}}
+
+/* ---------- específico del pack Calma y dormir: los botes van a la escala real del KV ---------- */
+.view-pack img,.view-pack img:nth-child(2){height:60%;max-width:none;margin:0;z-index:auto}
+.view-one img{height:84%}
+.pc-bottles{align-items:flex-end}
+.pc-bottles img,.pc-bottles img:nth-child(2){height:100%;margin:0 -8px}
 
 /* ---------- qué cubre: pastillero, una fila por fórmula ---------- */
 .cov{--c-mg:#F4C44E;--c-mela:#FFFFFF;--c-ashwa:#B8A7DA;background:var(--ink);color:#fff}
@@ -573,12 +579,14 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
   .pack-tile{min-height:460px}
   .links{display:none}
   .hero{grid-template-columns:1fr}
-  .stage{order:-1}
+  .stage{order:-1;aspect-ratio:16/9}                 /* en móvil, solo la banda de los botes */
+  .stage .photo{object-position:50% 15%}
   .buy-grid{grid-template-columns:1fr}
   .gallery{position:static}
   .moments{grid-template-columns:1fr}
   .her-grid,.rev-grid{grid-template-columns:1fr}
   .sticky{display:flex}
+  body{padding-bottom:84px}                          /* hueco para la barra de compra, que en móvil está siempre */
   .toast{bottom:92px}
 }
 @media (max-width:760px){
@@ -736,21 +744,21 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
       <div class="g-main">
         <span class="g-badge">−15 %</span>
         <div class="view view-pack on" data-view="pack">
-          <img data-img="mg" src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/54901-Bisglycinate_mg.png?v=1765283259&width=400" alt="">
-          <img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/1300.jpg?v=1752572099&width=500" alt="Pack Calma y dormir">
-          <img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/076280850703_4.jpg?v=1767103428&width=400" alt="">
+          <img data-img="mg" src="img/bote-magnesio.webp" alt="">
+          <img src="img/bote-melatonina.webp" alt="Pack Calma y dormir">
+          <img src="img/bote-ashwagandha.webp?v=2" alt="">
         </div>
-        <div class="view view-one" data-view="mg"><img data-img="mg" src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/54901-Bisglycinate_mg.png?v=1765283259&width=800" alt="Magnesium Bisglycinate"></div>
-        <div class="view view-one" data-view="mela"><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/1300.jpg?v=1752572099&width=800" alt="Melatonin with Glycine"></div>
-        <div class="view view-one" data-view="ashwa"><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/076280850703_4.jpg?v=1767103428&width=800" alt="Ashwagandha"></div>
+        <div class="view view-one" data-view="mg"><img data-img="mg" src="img/bote-magnesio.webp" alt="Magnesium Bisglycinate"></div>
+        <div class="view view-one" data-view="mela"><img src="img/bote-melatonina.webp" alt="Melatonin with Glycine"></div>
+        <div class="view view-one" data-view="ashwa"><img src="img/bote-ashwagandha.webp?v=2" alt="Ashwagandha"></div>
       </div>
       <div class="g-thumbs">
         <button class="t-pack on" type="button" data-show="pack" aria-label="Ver el pack">
-          <img data-img="mg" src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/54901-Bisglycinate_mg.png?v=1765283259&width=200" alt=""><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/1300.jpg?v=1752572099&width=200" alt=""><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/076280850703_4.jpg?v=1767103428&width=200" alt="">
+          <img data-img="mg" src="img/bote-magnesio.webp" alt=""><img src="img/bote-melatonina.webp" alt=""><img src="img/bote-ashwagandha.webp?v=2" alt="">
         </button>
-        <button type="button" data-show="mg" aria-label="Ver Magnesium Bisglycinate"><img data-img="mg" src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/54901-Bisglycinate_mg.png?v=1765283259&width=240" alt=""></button>
-        <button type="button" data-show="mela" aria-label="Ver Melatonin with Glycine"><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/1300.jpg?v=1752572099&width=240" alt=""></button>
-        <button type="button" data-show="ashwa" aria-label="Ver Ashwagandha"><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/076280850703_4.jpg?v=1767103428&width=240" alt=""></button>
+        <button type="button" data-show="mg" aria-label="Ver Magnesium Bisglycinate"><img data-img="mg" src="img/bote-magnesio.webp" alt=""></button>
+        <button type="button" data-show="mela" aria-label="Ver Melatonin with Glycine"><img src="img/bote-melatonina.webp" alt=""></button>
+        <button type="button" data-show="ashwa" aria-label="Ver Ashwagandha"><img src="img/bote-ashwagandha.webp?v=2" alt=""></button>
       </div>
     </div>
 
@@ -781,9 +789,9 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
           <span class="opt-price"><small>desde</small> <b id="fromPrice">23,02 €</b></span>
         </label>
         <div class="picker">
-          <label class="pick"><input type="checkbox" data-pick="mg" checked><img data-img="mg" src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/54901-Bisglycinate_mg.png?v=1765283259&width=160" alt=""><span><b>Magnesium Bisglycinate</b><small data-fmt="mg">120 cápsulas, 40 días</small></span><span class="pick-price" data-price="mg">27,78 €</span></label>
-          <label class="pick"><input type="checkbox" data-pick="mela" checked><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/1300.jpg?v=1752572099&width=160" alt=""><span><b>Melatonin with Glycine</b><small>100 cápsulas, 100 días</small></span><span class="pick-price" data-price="mela">23,02 €</span></label>
-          <label class="pick"><input type="checkbox" data-pick="ashwa" checked><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/076280850703_4.jpg?v=1767103428&width=160" alt=""><span><b>Ashwagandha</b><small>60 cápsulas, 60 días</small></span><span class="pick-price" data-price="ashwa">26,19 €</span></label>
+          <label class="pick"><input type="checkbox" data-pick="mg" checked><img data-img="mg" src="img/bote-magnesio.webp" alt=""><span><b>Magnesium Bisglycinate</b><small data-fmt="mg">120 cápsulas, 40 días</small></span><span class="pick-price" data-price="mg">27,78 €</span></label>
+          <label class="pick"><input type="checkbox" data-pick="mela" checked><img src="img/bote-melatonina.webp" alt=""><span><b>Melatonin with Glycine</b><small>100 cápsulas, 100 días</small></span><span class="pick-price" data-price="mela">23,02 €</span></label>
+          <label class="pick"><input type="checkbox" data-pick="ashwa" checked><img src="img/bote-ashwagandha.webp?v=2" alt=""><span><b>Ashwagandha</b><small>60 cápsulas, 60 días</small></span><span class="pick-price" data-price="ashwa">26,19 €</span></label>
           <div class="tiers" aria-hidden="true"><span class="tier" data-tier="1">Con 1: precio normal</span><span class="tier" data-tier="2">Con 2: −10 %</span><span class="tier on" data-tier="3">Con 3: −15 %</span></div>
           <p class="tier-msg" id="tierMsg">Tienes los 3: descuento máximo aplicado.</p>
         </div>
@@ -852,7 +860,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
 
     <article class="f-card reveal">
       <div class="f-head"><span>Magnesio</span><span class="badges"><span class="badge">Vegano</span><span class="badge">Sin gluten</span></span></div>
-      <div class="f-title"><img data-img="mg" src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/54901-Bisglycinate_mg.png?v=1765283259&width=240" alt=""><h3>Magnesium Bisglycinate</h3></div>
+      <div class="f-title"><img data-img="mg" src="img/bote-magnesio.webp" alt=""><h3>Magnesium Bisglycinate</h3></div>
       <p class="f-what">Magnesio quelado con dos moléculas de glicina: una de las formas más biodisponibles y la menos propensa a molestias gastrointestinales.</p>
       <div class="f-viz">
         <p class="viz-cap">Así es el bisglicinato</p>
@@ -873,7 +881,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
 
     <article class="f-card reveal">
       <div class="f-head"><span>Melatonina</span><span class="badges"><span class="badge">Vegano</span><span class="badge">Sin gluten</span></span></div>
-      <div class="f-title"><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/1300.jpg?v=1752572099&width=240" alt=""><h3>Melatonin with Glycine</h3></div>
+      <div class="f-title"><img src="img/bote-melatonina.webp" alt=""><h3>Melatonin with Glycine</h3></div>
       <p class="f-what">Melatonina, la hormona que el cuerpo produce en respuesta a la oscuridad, acompañada de 1.000 mg de glicina.</p>
       <div class="f-viz">
         <p class="viz-cap">Por cápsula</p>
@@ -895,7 +903,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
 
     <article class="f-card reveal">
       <div class="f-head"><span>Ashwagandha</span><span class="badges"><span class="badge">Vegano</span><span class="badge">Sin gluten</span></span></div>
-      <div class="f-title"><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/076280850703_4.jpg?v=1767103428&width=240" alt=""><h3>Ashwagandha</h3></div>
+      <div class="f-title"><img src="img/bote-ashwagandha.webp?v=2" alt=""><h3>Ashwagandha</h3></div>
       <p class="f-what">Extracto de raíz de <i>Withania somnifera</i>, el «ginseng indio», una planta muy utilizada en la medicina ayurvédica tradicional.</p>
       <div class="f-viz">
         <p class="viz-cap">470 mg de extracto por cápsula</p>
@@ -917,9 +925,9 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
   <div class="pack-cta-wrap reveal">
     <div class="pack-cta">
       <div class="pc-bottles" aria-hidden="true">
-        <img data-img="mg" src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/54901-Bisglycinate_mg.png?v=1765283259&width=400" alt="">
-        <img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/1300.jpg?v=1752572099&width=400" alt="">
-        <img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/076280850703_4.jpg?v=1767103428&width=400" alt="">
+        <img data-img="mg" src="img/bote-magnesio.webp" alt="">
+        <img src="img/bote-melatonina.webp" alt="">
+        <img src="img/bote-ashwagandha.webp?v=2" alt="">
       </div>
       <div class="pc-copy">
         <h3>Pack Calma y dormir</h3>
@@ -930,7 +938,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
         <b data-pack="now">65,44 €</b>
         <small data-pack="save">Ahorras 11,55 € y el envío es gratis</small>
       </div>
-      <button class="btn btn-lg" type="button" id="packBtn" style="padding:17px 26px">Añadir pack al carrito</button>
+      <button class="btn btn-lg pack-btn" type="button" style="padding:17px 26px">Añadir pack al carrito</button>
     </div>
   </div>
 </section>
@@ -993,7 +1001,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
       <div class="m-time"><span class="m-num">1</span>Durante el día</div>
       <h3>Fuera de las comidas</h3>
       <ul class="m-items">
-        <li><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/076280850703_4.jpg?v=1767103428&width=140" alt=""><span><b>Ashwagandha</b><br><small>1 cápsula</small></span></li>
+        <li><img src="img/bote-ashwagandha.webp?v=2" alt=""><span><b>Ashwagandha</b><br><small>1 cápsula</small></span></li>
       </ul>
     </article>
     <article class="moment night reveal" data-at="376">
@@ -1001,8 +1009,8 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
       <h3>Para dormir</h3>
       <p>Magnesio con la cena y melatonina poco antes de dormir.</p>
       <ul class="m-items">
-        <li><img data-img="mg" src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/54901-Bisglycinate_mg.png?v=1765283259&width=140" alt=""><span><b>Magnesium Bisglycinate</b><br><small data-dose="mg">3 cápsulas</small></span></li>
-        <li><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/1300.jpg?v=1752572099&width=140" alt=""><span><b>Melatonin with Glycine</b><br><small>1 cápsula</small></span></li>
+        <li><img data-img="mg" src="img/bote-magnesio.webp" alt=""><span><b>Magnesium Bisglycinate</b><br><small data-dose="mg">3 cápsulas</small></span></li>
+        <li><img src="img/bote-melatonina.webp" alt=""><span><b>Melatonin with Glycine</b><br><small>1 cápsula</small></span></li>
       </ul>
     </article>
     <article class="moment dawn reveal" data-at="821">
@@ -1028,7 +1036,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
     </div>
     <div class="dur-grid reveal">
       <article class="dur-col" data-prod="mg">
-        <img class="dur-img" src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/54901-Bisglycinate_mg.png?v=1765283259&width=240" data-img="mg" alt="" width="60" height="96">
+        <img class="dur-img" src="img/bote-magnesio.webp" data-img="mg" alt="" width="60" height="96">
         <h3>Magnesium Bisglycinate</h3>
         <div class="seg seg-sm" role="group" aria-label="Formato del magnesio">
           <button type="button" class="on" data-mgf="caps">Cápsulas</button>
@@ -1039,14 +1047,14 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
         <div class="dots" data-days="40" aria-hidden="true"></div>
       </article>
       <article class="dur-col" data-prod="mela">
-        <img class="dur-img" src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/1300.jpg?v=1752572099&width=240" alt="" width="60" height="96">
+        <img class="dur-img" src="img/bote-melatonina.webp" alt="" width="60" height="96">
         <h3>Melatonin with Glycine</h3><span class="seg-ph" aria-hidden="true"></span>
         <p class="dur-n"><b>100</b> días</p>
         <p class="dur-sub"><span class="dur-m">100</span>. <span data-durdose>100 cápsulas, 1 al día</span></p>
         <div class="dots" data-days="100" aria-hidden="true"></div>
       </article>
       <article class="dur-col" data-prod="ashwa">
-        <img class="dur-img" src="img/bote-ashwagandha.webp" alt="" width="60" height="96">
+        <img class="dur-img" src="img/bote-ashwagandha.webp?v=2" alt="" width="60" height="96">
         <h3>Ashwagandha</h3><span class="seg-ph" aria-hidden="true"></span>
         <p class="dur-n"><b>60</b> días</p>
         <p class="dur-sub"><span class="dur-m">60</span>. <span data-durdose>60 cápsulas, 1 al día</span></p>
@@ -1065,7 +1073,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
     </div>
     <div class="cov-tray reveal" role="list" aria-label="Funciones que cubre cada fórmula">
       <div class="cov-row" role="listitem">
-        <div class="cov-prod"><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/54901-Bisglycinate_mg.png?v=1765283259&width=240" data-img="mg" alt="" width="48" height="72"><b>Magnesium Bisglycinate</b><small>4 funciones</small></div>
+        <div class="cov-prod"><img src="img/bote-magnesio.webp" data-img="mg" alt="" width="48" height="72"><b>Magnesium Bisglycinate</b><small>4 funciones</small></div>
         <ul class="cov-fns">
           <li title="El magnesio contribuye a la función psicológica normal"><span class="cap" style="--a:var(--c-mg);--b:var(--c-mg)" aria-hidden="true"></span><b>Función psicológica</b><small>Magnesio</small></li>
           <li title="El magnesio contribuye al funcionamiento normal de los músculos"><span class="cap" style="--a:var(--c-mg);--b:var(--c-mg)" aria-hidden="true"></span><b>Músculos</b><small>Magnesio</small></li>
@@ -1074,20 +1082,20 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
         </ul>
       </div>
       <div class="cov-row" role="listitem">
-        <div class="cov-prod"><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/1300.jpg?v=1752572099&width=240" alt="" width="48" height="72"><b>Melatonin with Glycine</b><small>1 función</small></div>
+        <div class="cov-prod"><img src="img/bote-melatonina.webp" alt="" width="48" height="72"><b>Melatonin with Glycine</b><small>1 función</small></div>
         <ul class="cov-fns">
           <li title="La melatonina contribuye a disminuir el tiempo necesario para conciliar el sueño (con 1 mg poco antes de dormir)"><span class="cap" style="--a:var(--c-mela);--b:var(--c-mela)" aria-hidden="true"></span><b>Conciliar el sueño</b><small>Melatonina, 1&nbsp;mg</small></li>
         </ul>
       </div>
       <div class="cov-row" role="listitem">
-        <div class="cov-prod"><img src="img/bote-ashwagandha.webp" alt="" width="48" height="72"><b>Ashwagandha</b><small>Extracto de raíz, 470&nbsp;mg</small></div>
+        <div class="cov-prod"><img src="img/bote-ashwagandha.webp?v=2" alt="" width="48" height="72"><b>Ashwagandha</b><small>Extracto de raíz, 470&nbsp;mg</small></div>
         <ul class="cov-fns">
           <li class="cov-none"><span class="cap cap-empty" style="--a:var(--c-ashwa);--b:var(--c-ashwa)" aria-hidden="true"></span><b>Sin declaraciones autorizadas</b><small>Las plantas están pendientes de evaluación en la UE. Aquí solo describimos su composición.</small></li>
         </ul>
       </div>
       <div class="cov-row cov-row-pack" role="listitem">
         <div class="cov-prod cov-prod-pack">
-          <div class="cov-bottles" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/54901-Bisglycinate_mg.png?v=1765283259&width=240" data-img="mg" alt="" width="36" height="56"><img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/1300.jpg?v=1752572099&width=240" alt="" width="36" height="56"><img src="img/bote-ashwagandha.webp" alt="" width="36" height="56"></div>
+          <div class="cov-bottles" aria-hidden="true"><img src="img/bote-magnesio.webp" data-img="mg" alt="" width="36" height="56"><img src="img/bote-melatonina.webp" alt="" width="36" height="56"><img src="img/bote-ashwagandha.webp?v=2" alt="" width="36" height="56"></div>
           <b>Pack Calma&nbsp;y&nbsp;dormir</b><small>5 funciones</small>
         </div>
         <div class="cov-all">
@@ -1206,7 +1214,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
     </div>
     <div class="faq-cols reveal">
       <div class="faq-col">
-        <details class="acc" open><summary>¿Cómo tomo el pack?</summary><div class="acc-body">Ashwagandha: 1 cápsula al día, preferentemente fuera de las comidas. Magnesium Bisglycinate: 3 cápsulas al día con la comida o con un vaso de agua (en polvo, ¾ del cazo medidor en un vaso de agua u otra bebida). Melatonin with Glycine: 1 cápsula al día; para disminuir el tiempo necesario para conciliar el sueño, con 1 mg poco antes de irse a dormir.</div></details>
+        <details class="acc"><summary>¿Cómo tomo el pack?</summary><div class="acc-body">Ashwagandha: 1 cápsula al día, preferentemente fuera de las comidas. Magnesium Bisglycinate: 3 cápsulas al día con la comida o con un vaso de agua (en polvo, ¾ del cazo medidor en un vaso de agua u otra bebida). Melatonin with Glycine: 1 cápsula al día; para disminuir el tiempo necesario para conciliar el sueño, con 1 mg poco antes de irse a dormir.</div></details>
         <details class="acc"><summary>¿Puedo comprar solo uno de los productos?</summary><div class="acc-body">Sí. En «Elige tus productos» marcas los que quieras. Con uno pagas el precio normal; con dos ahorras un 10 %; con los tres, un 15 %.</div></details>
         <details class="acc"><summary>¿Cuánto me dura?</summary><div class="acc-body">Melatonin with Glycine, 100 días. Ashwagandha, 60 días. Magnesium Bisglycinate, 40 días en el formato de 120 cápsulas o 68 días en el de polvo (179 g, 68 dosis).</div></details>
         <details class="acc"><summary>¿Es apto para veganos?</summary><div class="acc-body">Sí. Los tres productos son aptos para veganos y sin gluten, con cápsula vegetal.</div></details>
@@ -1226,7 +1234,25 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
 <section class="sec packs" id="packs">
   <div class="sec-head center reveal">
     <h2 class="h2">Vuelve a tu ritmo</h2>
-    <p class="sub">Los otros dos packs de la campaña.</p>
+  </div>
+  <div class="pack-cta-wrap reveal">
+    <div class="pack-cta">
+      <div class="pc-bottles" aria-hidden="true">
+        <img data-img="mg" src="img/bote-magnesio.webp" alt="">
+        <img src="img/bote-melatonina.webp" alt="">
+        <img src="img/bote-ashwagandha.webp?v=2" alt="">
+      </div>
+      <div class="pc-copy">
+        <h3>Pack Calma y dormir</h3>
+        <p>Magnesium Bisglycinate, Melatonin with Glycine y Ashwagandha.</p>
+      </div>
+      <div class="pc-price">
+        <s data-pack="was">76,99 €</s>
+        <b data-pack="now">65,44 €</b>
+        <small data-pack="save">Ahorras 11,55 € y el envío es gratis</small>
+      </div>
+      <button class="btn btn-lg pack-btn" type="button" style="padding:17px 26px">Añadir pack al carrito</button>
+    </div>
   </div>
   <div class="packs-grid">
     <a class="pack-tile reveal" href="landing-pack-energia-y-foco.html">
@@ -1266,7 +1292,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 
   /* ---------- datos de producto (PVP solaray-kal.es) ---------- */
-  const IMG = { caps: 'https://cdn.shopify.com/s/files/1/0957/3410/4402/files/54901-Bisglycinate_mg.png?v=1765283259&width=', polvo: 'https://cdn.shopify.com/s/files/1/0957/3410/4402/files/imagenbisg.polvo.png?v=1760083508&width=' };
+  const IMG = { caps: 'img/bote-magnesio.webp', polvo: 'img/bote-magnesio-polvo.webp' };
   const P = {
     mg: {
       name: 'Magnesium Bisglycinate',
@@ -1305,17 +1331,14 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
     $$('[data-pack="now"]').forEach(el => el.textContent = eur(fullPack));
     $$('[data-pack="save-short"]').forEach(el => el.textContent = 'Ahorras ' + eur(full - fullPack));
     $$('[data-pack="save"]').forEach(el => el.textContent = 'Ahorras ' + eur(full - fullPack) + ' y el envío es gratis');
-    $('#packBtn').dataset.variants = all.map(id => item(id).variant).join(',');
+    $$('.pack-btn').forEach(b => b.dataset.variants = all.map(id => item(id).variant).join(','));
     $('#fromPrice').textContent = eur(Math.min(item('mg').price, P.mela.price, P.ashwa.price));
     $$('[data-price="mg"]').forEach(el => el.textContent = eur(item('mg').price));
     $('[data-fmt="mg"]').textContent = item('mg').fmt;
     $('[data-dose="mg"]').textContent = item('mg').dose;
     $('[data-toma="mg"]').textContent = item('mg').toma;
     $('[data-aporta="mg"]').textContent = item('mg').aporta;
-    $$('[data-img="mg"]').forEach(im => {
-      const w = (im.getAttribute('src').match(/width=(\d+)/) || [, '400'])[1];
-      im.src = IMG[state.mg] + w;
-    });
+    $$('[data-img="mg"]').forEach(im => im.src = IMG[state.mg]);
 
     $('#sumSub').textContent = eur(sub);
     $('#discLbl').textContent = n === 3 ? 'Descuento pack (−15 %)' : n === 2 ? 'Descuento dúo (−10 %)' : 'Descuento';
@@ -1394,7 +1417,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => t.classList.remove('show'), 3800);
   }
-  $('#packBtn').addEventListener('click', () => addToCart(3, 'Pack Calma y dormir añadido'));
+  $$('.pack-btn').forEach(b => b.addEventListener('click', () => addToCart(3, 'Pack Calma y dormir añadido')));
   $('#addBtn').addEventListener('click', () => {
     const n = ids().length;
     addToCart(n, n === 3 ? 'Pack Calma y dormir añadido' : n + (n > 1 ? ' productos añadidos' : ' producto añadido'));
@@ -1470,12 +1493,14 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
   }
 
   /* ---------- cabecera y CTA fija ---------- */
-  const nav = $('#nav'), sticky = $('#sticky'), hero = $('.hero'), buy = $('#comprar'), fin = $('#packs'), packBar = $('.pack-cta'), rutinaCta = $('.r-foot .btn');
+  const nav = $('#nav'), sticky = $('#sticky'), hero = $('.hero'), buy = $('#comprar'), fin = $('#packs'), packBars = $$('.pack-cta'), rutinaCta = $('.r-foot .btn');
+  const enMovil = matchMedia('(max-width:860px)');
   function onScroll() {
     nav.classList.toggle('scrolled', scrollY > 10);
     const past = hero.getBoundingClientRect().bottom < 0;
     const inView = el => { const b = el.getBoundingClientRect(); return b.top < innerHeight && b.bottom > 0; };
-    sticky.classList.toggle('show', past && !inView(buy) && !inView(fin) && !inView(packBar) && !inView(rutinaCta));
+    // en móvil la barra no se esconde nunca: es el único botón de compra a mano
+    sticky.classList.toggle('show', enMovil.matches || (past && !inView(buy) && !inView(fin) && !packBars.some(inView) && !inView(rutinaCta)));
     if (!ticking) { ticking = true; requestAnimationFrame(moveSun); }
   }
   /* ---------- estados fijos para exportar a Figma: ?figma=1&panel=1..4&compra=custom&mg=caps|polvo&noche=dia|noche|manana ---------- */
@@ -1491,6 +1516,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
 
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onScroll);
+  enMovil.addEventListener('change', onScroll);
   onScroll();
   render();
 })();

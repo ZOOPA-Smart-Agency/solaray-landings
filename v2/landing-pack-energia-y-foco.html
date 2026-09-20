@@ -268,6 +268,7 @@ details.acc:last-of-type{border-bottom:1px solid var(--line)}
 
 /* ---------- compra del pack bajo las fichas ---------- */
 .pack-cta-wrap{max-width:var(--maxw);margin:16px auto 0;padding:0 var(--pad)}
+#packs .pack-cta-wrap{margin:0 auto 16px}          /* el mismo hueco que hay entre las dos fotos */
 .pack-cta{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;grid-template-areas:"b c p a";align-items:center;gap:clamp(16px,2.4vw,36px);padding:16px clamp(18px,2.6vw,34px);border-radius:var(--r);background:var(--ink);color:#fff}
 .pc-bottles{grid-area:b;display:flex;align-items:flex-end;height:118px;padding:4px 6px 2px}
 .pc-bottles img{height:84%;width:auto;object-fit:contain;margin:0 -4px;filter:drop-shadow(0 10px 12px rgba(0,0,0,.35))}
@@ -544,12 +545,14 @@ section[id]{scroll-margin-top:66px}
   .pack-tile{min-height:460px}
   .links{display:none}
   .hero{grid-template-columns:1fr}
-  .stage{order:-1}
+  .stage{order:-1;aspect-ratio:16/9}                 /* en móvil, solo la banda de los botes */
+  .stage .photo{object-position:50% 29%}
   .buy-grid{grid-template-columns:1fr}
   .gallery{position:static}
   .moments{grid-template-columns:1fr}
   .her-grid,.rev-grid{grid-template-columns:1fr}
   .sticky{display:flex}
+  body{padding-bottom:84px}                          /* hueco para la barra de compra, que en móvil está siempre */
   .toast{bottom:92px}
 }
 @media (max-width:760px){
@@ -924,7 +927,7 @@ section[id]{scroll-margin-top:66px}
         <b data-pack="now">78,26 €</b>
         <small data-pack="save">Ahorras 13,81 € y el envío es gratis</small>
       </div>
-      <button class="btn btn-lg" type="button" id="packBtn" style="padding:17px 26px">Añadir pack al carrito</button>
+      <button class="btn btn-lg pack-btn" type="button" style="padding:17px 26px">Añadir pack al carrito</button>
     </div>
   </div>
 </section>
@@ -1207,7 +1210,7 @@ section[id]{scroll-margin-top:66px}
     </div>
     <div class="faq-cols reveal">
       <div class="faq-col">
-        <details class="acc" open><summary>¿Cómo tomo el pack?</summary><div class="acc-body">Opti-5 Magnesium Complex: 1 cápsula vegetal al día con la comida o con un vaso de agua. Vitamina C Liposomal: 1 cápsula al día, preferentemente con la comida o con un vaso de agua. Omega 3 450/300: 1 perla al día, preferentemente durante la comida o cena, con un vaso de agua.</div></details>
+        <details class="acc"><summary>¿Cómo tomo el pack?</summary><div class="acc-body">Opti-5 Magnesium Complex: 1 cápsula vegetal al día con la comida o con un vaso de agua. Vitamina C Liposomal: 1 cápsula al día, preferentemente con la comida o con un vaso de agua. Omega 3 450/300: 1 perla al día, preferentemente durante la comida o cena, con un vaso de agua.</div></details>
         <details class="acc"><summary>¿Puedo comprar solo uno de los productos?</summary><div class="acc-body">Sí. En «Elige tus productos» marcas los que quieras. Con uno pagas el precio normal; con dos ahorras un 10 %; con los tres, un 15 %.</div></details>
         <details class="acc"><summary>¿Cuánto me dura?</summary><div class="acc-body">Opti-5 Magnesium Complex, 60 días. Omega 3 450/300, 60 días en el formato de 60 perlas o 120 días en el de 120. La Vitamina C Liposomal, 30 días en el formato de 30 cápsulas o 100 días en el de 100.</div></details>
         <details class="acc"><summary>¿Es apto para veganos?</summary><div class="acc-body">Opti-5 Magnesium Complex y Vitamina C Liposomal, sí: cápsulas vegetales y sin gluten. Omega 3 450/300 no, porque lleva aceite de pescado y la perla es de gelatina.</div></details>
@@ -1226,7 +1229,25 @@ section[id]{scroll-margin-top:66px}
 <section class="sec packs" id="packs">
   <div class="sec-head center reveal">
     <h2 class="h2">Vuelve a tu ritmo</h2>
-    <p class="sub">Los otros dos packs de la campaña.</p>
+  </div>
+  <div class="pack-cta-wrap reveal">
+    <div class="pack-cta">
+      <div class="pc-bottles" aria-hidden="true">
+        <img src="img/bote-vitamina-c.webp" alt="">
+        <img src="img/bote-opti-5.webp" alt="">
+        <img src="https://cdn.shopify.com/s/files/1/0957/3410/4402/files/8482-Omega450300.png?v=1767097076&width=400" alt="">
+      </div>
+      <div class="pc-copy">
+        <h3>Pack Energía y foco</h3>
+        <p>Opti-5 Magnesium Complex, Vitamina C Liposomal 500 mg y Omega 3 450/300 de KAL.</p>
+      </div>
+      <div class="pc-price">
+        <s data-pack="was">92,07 €</s>
+        <b data-pack="now">78,26 €</b>
+        <small data-pack="save">Ahorras 13,81 € y el envío es gratis</small>
+      </div>
+      <button class="btn btn-lg pack-btn" type="button" style="padding:17px 26px">Añadir pack al carrito</button>
+    </div>
   </div>
   <div class="packs-grid">
     <a class="pack-tile reveal" href="landing-pack-vuelta-al-gym.html">
@@ -1300,7 +1321,7 @@ section[id]{scroll-margin-top:66px}
     $$('[data-pack="now"]').forEach(el => el.textContent = eur(fullPack));
     $$('[data-pack="save-short"]').forEach(el => el.textContent = 'Ahorras ' + eur(full - fullPack));
     $$('[data-pack="save"]').forEach(el => el.textContent = 'Ahorras ' + eur(full - fullPack) + ' y el envío es gratis');
-    $('#packBtn').dataset.variants = ['opti5', 'vitc', 'omega'].map(id => item(id).variant).join(',');
+    $$('.pack-btn').forEach(b => b.dataset.variants = ['opti5', 'vitc', 'omega'].map(id => item(id).variant).join(','));
     $('#fromPrice').textContent = eur(Math.min(P.opti5.price, item('vitc').price, P.omega.price));
     $$('[data-price="vitc"]').forEach(el => el.textContent = eur(item('vitc').price));
     $('[data-fmt="vitc"]').textContent = state.vitc + ' cápsulas, ' + state.vitc + ' días';
@@ -1381,7 +1402,7 @@ section[id]{scroll-margin-top:66px}
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => t.classList.remove('show'), 3800);
   }
-  $('#packBtn').addEventListener('click', () => addToCart(3, 'Pack Energía y foco añadido'));
+  $$('.pack-btn').forEach(b => b.addEventListener('click', () => addToCart(3, 'Pack Energía y foco añadido')));
   $('#addBtn').addEventListener('click', () => {
     const n = ids().length;
     addToCart(n, n === 3 ? 'Pack Energía y foco añadido' : n + (n > 1 ? ' productos añadidos' : ' producto añadido'));
@@ -1453,12 +1474,14 @@ section[id]{scroll-margin-top:66px}
   }
 
   /* ---------- cabecera y CTA fija ---------- */
-  const nav = $('#nav'), sticky = $('#sticky'), hero = $('.hero'), buy = $('#comprar'), fin = $('#packs'), packBar = $('.pack-cta'), rutinaCta = $('.r-foot .btn');
+  const nav = $('#nav'), sticky = $('#sticky'), hero = $('.hero'), buy = $('#comprar'), fin = $('#packs'), packBars = $$('.pack-cta'), rutinaCta = $('.r-foot .btn');
+  const enMovil = matchMedia('(max-width:860px)');
   function onScroll() {
     nav.classList.toggle('scrolled', scrollY > 10);
     const past = hero.getBoundingClientRect().bottom < 0;
     const inView = el => { const b = el.getBoundingClientRect(); return b.top < innerHeight && b.bottom > 0; };
-    sticky.classList.toggle('show', past && !inView(buy) && !inView(fin) && !inView(packBar) && !inView(rutinaCta));
+    // en móvil la barra no se esconde nunca: es el único botón de compra a mano
+    sticky.classList.toggle('show', enMovil.matches || (past && !inView(buy) && !inView(fin) && !packBars.some(inView) && !inView(rutinaCta)));
     if (!ticking) { ticking = true; requestAnimationFrame(moveSun); }
   }
   /* ---------- estados fijos para exportar a Figma: ?figma=1&panel=1..6&compra=custom&vitc=30|100&sol=manana|mediodia|tarde|noche ---------- */
@@ -1474,6 +1497,7 @@ section[id]{scroll-margin-top:66px}
 
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onScroll);
+  enMovil.addEventListener('change', onScroll);
   onScroll();
   render();
 })();

@@ -275,6 +275,7 @@ details.acc:last-of-type{border-bottom:1px solid var(--line)}
 
 /* ---------- compra del pack bajo las fichas ---------- */
 .pack-cta-wrap{max-width:var(--maxw);margin:16px auto 0;padding:0 var(--pad)}
+#packs .pack-cta-wrap{margin:0 auto 16px}          /* el mismo hueco que hay entre las dos fotos */
 .pack-cta{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;grid-template-areas:"b c p a";align-items:center;gap:clamp(16px,2.4vw,36px);padding:16px clamp(18px,2.6vw,34px);border-radius:var(--r);background:var(--ink);color:#fff}
 .pc-bottles{grid-area:b;display:flex;align-items:flex-end;height:118px;padding:4px 6px 2px}
 .pc-bottles img{height:84%;width:auto;object-fit:contain;margin:0 -4px;filter:drop-shadow(0 10px 12px rgba(0,0,0,.35))}
@@ -486,7 +487,6 @@ section[id]{scroll-margin-top:66px}
 @keyframes rindeKnobL{from{left:calc(100% - var(--k) - var(--kin))}to{left:var(--kout)}}
 .js .rinde.left span{background-image:linear-gradient(90deg,rgba(17,21,58,var(--tin)) 0 50%,var(--ink) 50% 100%);animation:rindeTextL 1.2s cubic-bezier(.65,0,.35,1) .9s both}
 @keyframes rindeTextL{0%,12%{background-position:0 0}80%,100%{background-position:100% 0}}
-img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
 .night-panel .star{fill:#FFF7E3}
 .js .night-panel .star{animation:twinkle 4s ease-in-out infinite}
 @keyframes twinkle{0%,100%{opacity:.25}50%{opacity:.95}}
@@ -569,12 +569,14 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
   .pack-tile{min-height:460px}
   .links{display:none}
   .hero{grid-template-columns:1fr}
-  .stage{order:-1}
+  .stage{order:-1;aspect-ratio:16/9}                 /* en móvil, solo la banda de los botes */
+  .stage .photo{object-position:50% 23%}
   .buy-grid{grid-template-columns:1fr}
   .gallery{position:static}
   .moments{grid-template-columns:1fr}
   .her-grid,.rev-grid{grid-template-columns:1fr}
   .sticky{display:flex}
+  body{padding-bottom:84px}                          /* hueco para la barra de compra, que en móvil está siempre */
   .toast{bottom:92px}
 }
 @media (max-width:760px){
@@ -971,7 +973,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
         <b data-pack="now">80,27 €</b>
         <small data-pack="save">Ahorras 14,17 € y el envío es gratis</small>
       </div>
-      <button class="btn btn-lg" type="button" id="packBtn" style="padding:17px 26px">Añadir pack al carrito</button>
+      <button class="btn btn-lg pack-btn" type="button" style="padding:17px 26px">Añadir pack al carrito</button>
     </div>
   </div>
 </section>
@@ -1257,7 +1259,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
     </div>
     <div class="faq-cols reveal">
       <div class="faq-col">
-        <details class="acc" open><summary>¿Cómo tomo el pack?</summary><div class="acc-body">Spectro Energy!: 2 cápsulas al día con la comida o con un vaso de agua. Opti-5 Magnesium Complex: 1 cápsula al día con la comida o con un vaso de agua. Creatine Monohidrate: medio cacito (2,5 g) o un cacito (5 g) disuelto en medio vaso de agua, antes, durante o después de la actividad.</div></details>
+        <details class="acc"><summary>¿Cómo tomo el pack?</summary><div class="acc-body">Spectro Energy!: 2 cápsulas al día con la comida o con un vaso de agua. Opti-5 Magnesium Complex: 1 cápsula al día con la comida o con un vaso de agua. Creatine Monohidrate: medio cacito (2,5 g) o un cacito (5 g) disuelto en medio vaso de agua, antes, durante o después de la actividad.</div></details>
         <details class="acc"><summary>¿Medio cacito o uno entero?</summary><div class="acc-body">Depende del objetivo. La ficha propone 3-5 g al día como mantenimiento en deporte y 2-3 g al día en suplementación constante. La declaración de rendimiento pide 3 g diarios, que se alcanzan con un cacito (5 g), no con medio (2,5 g).</div></details>
         <details class="acc"><summary>¿Hay que hacer fase de carga?</summary><div class="acc-body">No es obligatorio. La ficha describe dos protocolos: una fase de carga rápida de 20 g al día repartidos en 4-5 tomas durante 7 días y después 3-5 g al día, o una dosificación constante. Las dos aumentan las reservas de creatina del músculo; cambian la rapidez y las dosis.</div></details>
         <details class="acc"><summary>¿Cuándo tomo la creatina?</summary><div class="acc-body">En cualquier momento, porque el beneficio depende de la acumulación en los tejidos. La ficha añade un matiz para el deporte: acompañarla de carbohidratos después de una sesión intensa puede incrementar la reposición de glucógeno muscular.</div></details>
@@ -1279,7 +1281,25 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
 <section class="sec packs" id="packs">
   <div class="sec-head center reveal">
     <h2 class="h2">Vuelve a tu ritmo</h2>
-    <p class="sub">Los otros dos packs de la campaña.</p>
+  </div>
+  <div class="pack-cta-wrap reveal">
+    <div class="pack-cta">
+      <div class="pc-bottles" aria-hidden="true">
+        <img data-img="sp" src="img/bote-spectro.webp" alt="">
+        <img src="img/bote-creatina.webp" alt="">
+        <img src="img/bote-opti-5-gym.webp" alt="">
+      </div>
+      <div class="pc-copy">
+        <h3>Pack Vuelta al gym</h3>
+        <p>Opti-5 Magnesium Complex, Creatine Monohidrate y Spectro Energy!.</p>
+      </div>
+      <div class="pc-price">
+        <s data-pack="was">94,44 €</s>
+        <b data-pack="now">80,27 €</b>
+        <small data-pack="save">Ahorras 14,17 € y el envío es gratis</small>
+      </div>
+      <button class="btn btn-lg pack-btn" type="button" style="padding:17px 26px">Añadir pack al carrito</button>
+    </div>
   </div>
   <div class="packs-grid">
     <a class="pack-tile reveal" href="landing-pack-energia-y-foco.html">
@@ -1367,7 +1387,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
     $$('[data-pack="now"]').forEach(el => el.textContent = eur(fullPack));
     $$('[data-pack="save-short"]').forEach(el => el.textContent = 'Ahorras ' + eur(full - fullPack));
     $$('[data-pack="save"]').forEach(el => el.textContent = 'Ahorras ' + eur(full - fullPack) + ' y el envío es gratis');
-    $('#packBtn').dataset.variants = all.map(id => item(id).variant).join(',');
+    $$('.pack-btn').forEach(b => b.dataset.variants = all.map(id => item(id).variant).join(','));
     $('#fromPrice').textContent = eur(Math.min(P.mg.price, item('cre').price, item('sp').price));
 
     $$('[data-price="sp"]').forEach(el => el.textContent = eur(item('sp').price));
@@ -1464,7 +1484,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => t.classList.remove('show'), 3800);
   }
-  $('#packBtn').addEventListener('click', () => addToCart(3, 'Pack Vuelta al gym añadido'));
+  $$('.pack-btn').forEach(b => b.addEventListener('click', () => addToCart(3, 'Pack Vuelta al gym añadido')));
   $('#addBtn').addEventListener('click', () => {
     const n = ids().length;
     addToCart(n, n === 3 ? 'Pack Vuelta al gym añadido' : n + (n > 1 ? ' productos añadidos' : ' producto añadido'));
@@ -1539,12 +1559,14 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
   }
 
   /* ---------- cabecera y CTA fija ---------- */
-  const nav = $('#nav'), sticky = $('#sticky'), hero = $('.hero'), buy = $('#comprar'), fin = $('#packs'), packBar = $('.pack-cta'), rutinaCta = $('.r-foot .btn');
+  const nav = $('#nav'), sticky = $('#sticky'), hero = $('.hero'), buy = $('#comprar'), fin = $('#packs'), packBars = $$('.pack-cta'), rutinaCta = $('.r-foot .btn');
+  const enMovil = matchMedia('(max-width:860px)');
   function onScroll() {
     nav.classList.toggle('scrolled', scrollY > 10);
     const past = hero.getBoundingClientRect().bottom < 0;
     const inView = el => { const b = el.getBoundingClientRect(); return b.top < innerHeight && b.bottom > 0; };
-    sticky.classList.toggle('show', past && !inView(buy) && !inView(fin) && !inView(packBar) && !inView(rutinaCta));
+    // en móvil la barra no se esconde nunca: es el único botón de compra a mano
+    sticky.classList.toggle('show', enMovil.matches || (past && !inView(buy) && !inView(fin) && !packBars.some(inView) && !inView(rutinaCta)));
     if (!ticking) { ticking = true; requestAnimationFrame(moveBall); }
   }
 
@@ -1562,6 +1584,7 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
 
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onScroll);
+  enMovil.addEventListener('change', onScroll);
   onScroll();
   render();
 })();
