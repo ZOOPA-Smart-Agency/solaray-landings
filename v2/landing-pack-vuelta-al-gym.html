@@ -372,27 +372,49 @@ details.acc:last-of-type{border-bottom:1px solid var(--line)}
 .brands span{padding:8px 14px;border-radius:999px;border:1px solid var(--line-2);font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
 .brands .lbl{border:0;padding-left:0;color:var(--muted)}
 
-/* ---------- reseñas: seis opiniones, separadas por líneas ---------- */
-.rev-grid{--g:clamp(18px,2.4vw,32px);max-width:var(--maxw);margin:0 auto;padding:0 calc(var(--pad) - var(--g));display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
-.rev{display:flex;flex-direction:column;gap:12px;margin:0;padding:clamp(20px,2.4vw,30px) var(--g)}
-.rev:not(:nth-child(3n+1)){border-left:1px solid var(--line-2)}
-.rev:nth-child(n+4){border-top:1px solid var(--line-2)}
+/* ---------- reseñas: carrusel continuo, se para al pasar el ratón ---------- */
+.rev-track{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 clamp(24px,5vw,72px),#000 calc(100% - clamp(24px,5vw,72px)),transparent);mask:linear-gradient(90deg,transparent,#000 clamp(24px,5vw,72px),#000 calc(100% - clamp(24px,5vw,72px)),transparent)}
+.rev-row{display:flex;width:max-content;animation:rev-run 80s linear infinite}
+.rev-track:hover .rev-row,.rev-track:focus-within .rev-row{animation-play-state:paused}
+@keyframes rev-run{to{transform:translate3d(-50%,0,0)}}
+.rev{flex:0 0 clamp(250px,23vw,320px);display:flex;flex-direction:column;gap:12px;margin:0;padding:4px clamp(20px,2.2vw,30px);border-left:1px solid var(--line-2)}
 .rev .stars{width:80px;height:14px;background:linear-gradient(90deg,var(--yellow) 0 calc(var(--n) / 5 * 100%),var(--line-2) 0);-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 136 24'><path transform='translate(0 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(28 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(56 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(84 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(112 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/></svg>") center/100% 100% no-repeat;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 136 24'><path transform='translate(0 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(28 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(56 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(84 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/><path transform='translate(112 0)' d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z'/></svg>") center/100% 100% no-repeat}
 .rev blockquote{margin:0;font-size:15px;line-height:1.55}
 .rev figcaption{margin-top:auto;padding-top:6px;font-size:13px;font-weight:650}
 .rev figcaption span{display:block;margin-top:2px;font-weight:500;color:var(--muted)}
+.rev-note{max-width:var(--maxw);margin:clamp(18px,2.2vw,28px) auto 0;padding:0 var(--pad);text-align:right;font-size:12px;line-height:1.5;color:var(--muted)}
 @media (max-width:860px){
-  .rev-grid{grid-template-columns:minmax(0,1fr)}
-  .rev:not(:nth-child(3n+1)){border-left:0}
-  .rev+.rev{border-top:1px solid var(--line-2)}
+  .rev-track{overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+  .rev-track::-webkit-scrollbar{display:none}
+  .rev-row{animation:none}
+  .rev{flex-basis:min(78vw,300px);scroll-snap-align:center}
+  .rev-note{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){
+  .rev-row{animation:none}
+  .rev-track{overflow-x:auto}
 }
 
-/* ---------- FAQ ---------- */
-.faq-grid{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,80px);align-items:start}
-.faq-side{position:sticky;top:100px}
-.faq-side p{margin:16px 0 22px;color:var(--ink-2);max-width:36ch}
-.faq .acc summary{padding:20px 0;font-size:15px;font-weight:600;letter-spacing:0;text-transform:none;gap:16px}
-.faq .acc-body{font-size:15px;max-width:60ch}
+/* ---------- FAQ: banda azul de borde a borde, preguntas a dos columnas ---------- */
+.faq{background:var(--ink);color:#fff}
+.faq-wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.faq-head{padding-bottom:clamp(26px,3.2vw,42px)}
+.faq-head .h2{margin:0}
+.faq-note{margin:clamp(22px,2.6vw,34px) 0 0;max-width:62ch;font-size:12.5px;line-height:1.5;color:rgba(255,255,255,.6)}
+.faq-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(32px,5vw,88px);align-items:start}
+.faq details.acc{border-top:1px solid rgba(255,255,255,.22)}
+.faq details.acc:last-of-type{border-bottom:1px solid rgba(255,255,255,.22)}
+.faq .acc summary{padding:20px 0;font-size:15px;font-weight:600;letter-spacing:0;text-transform:none;gap:16px;color:#fff;transition:color .2s}
+.faq .acc summary:hover{color:var(--yellow)}
+.faq .acc summary::after{color:rgba(255,255,255,.6)}
+.faq .acc[open] summary{color:var(--yellow)}
+.faq .acc[open] summary::after{color:var(--yellow)}
+.faq .acc-body{padding-bottom:20px;font-size:15px;max-width:60ch;color:rgba(255,255,255,.76)}
+.faq .acc summary:focus-visible{outline:2px solid var(--yellow);outline-offset:3px;border-radius:4px}
+@media (max-width:860px){
+  .faq-cols{grid-template-columns:minmax(0,1fr)}
+  .faq-cols .faq-col+.faq-col details.acc:first-of-type{border-top:0}
+}
 
 /* ---------- otros packs (Vuelve a tu ritmo) ---------- */
 .packs-grid{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -1159,62 +1181,97 @@ img[src*="076280850703_4"]{mix-blend-mode:multiply;filter:none}
 <section class="sec" id="resenas">
   <div class="sec-head center reveal">
     <h2 class="h2">Opiniones de clientes</h2>
-    <p class="sub">Reseñas de clientes en solaray.com, traducidas del inglés. Son de los productos hermanos: el Spectro Energy! y la creatina de España todavía no tienen opiniones.</p>
   </div>
-  <div class="rev-grid">
-    <figure class="rev reveal" style="--n:5">
-      <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
-      <blockquote>«Llevo más de 20 años tomando este producto. No hay nada igual.»</blockquote>
-      <figcaption>Rhea F.<span>Spectro Multivitamin · junio de 2022</span></figcaption>
-    </figure>
-    <figure class="rev reveal" style="--n:5">
-      <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
-      <blockquote>«Está claro que valorar un multivitamínico es algo subjetivo, pero creo sinceramente que tomar Spectro me ha sentado bien, y no me lo quitaría.»</blockquote>
-      <figcaption>Gediminas L.<span>Spectro Multivitamin · enero de 2025</span></figcaption>
-    </figure>
-    <figure class="rev reveal" style="--n:5">
-      <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
-      <blockquote>«Un gran producto y muy cómodo para el día a día.»</blockquote>
-      <figcaption>Sharon H.<span>Spectro Multivitamin · abril de 2025</span></figcaption>
-    </figure>
-    <figure class="rev reveal" style="--n:5">
-      <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
-      <blockquote>«Es una creatina muy buena. Se disuelve de maravilla y no queda tan arenosa como otras marcas. La he mezclado con agua y con zumo, y sabe bien. Me ha ayudado a progresar en el gimnasio.»</blockquote>
-      <figcaption>Ashleigh B.<span>Creatine + MBP · agosto de 2026</span></figcaption>
-    </figure>
-    <figure class="rev reveal" style="--n:5">
-      <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
-      <blockquote>«Fácil de mezclar con nuestra bebida favorita. El polvo sin sabor es justo eso: no deja regusto raro y se disuelve bien.»</blockquote>
-      <figcaption>Jacqui I.<span>Creatine + MBP · agosto de 2026</span></figcaption>
-    </figure>
-    <figure class="rev reveal" style="--n:5">
-      <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
-      <blockquote>«He probado muchas marcas de creatina y esta está a la altura. La textura es buena y la mezcla acompaña bien en la recuperación.»</blockquote>
-      <figcaption>Gerardo S.<span>Creatine + MBP · agosto de 2026</span></figcaption>
-    </figure>
+  <div class="rev-track reveal">
+    <div class="rev-row">
+      <figure class="rev" style="--n:5">
+        <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+        <blockquote>«Llevo más de 20 años tomando este producto. No hay nada igual.»</blockquote>
+        <figcaption>Rhea F.<span>Spectro Multivitamin · junio de 2022</span></figcaption>
+      </figure>
+      <figure class="rev" style="--n:5">
+        <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+        <blockquote>«Está claro que valorar un multivitamínico es algo subjetivo, pero creo sinceramente que tomar Spectro me ha sentado bien, y no me lo quitaría.»</blockquote>
+        <figcaption>Gediminas L.<span>Spectro Multivitamin · enero de 2025</span></figcaption>
+      </figure>
+      <figure class="rev" style="--n:5">
+        <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+        <blockquote>«Un gran producto y muy cómodo para el día a día.»</blockquote>
+        <figcaption>Sharon H.<span>Spectro Multivitamin · abril de 2025</span></figcaption>
+      </figure>
+      <figure class="rev" style="--n:5">
+        <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+        <blockquote>«Es una creatina muy buena. Se disuelve de maravilla y no queda tan arenosa como otras marcas. La he mezclado con agua y con zumo, y sabe bien. Me ha ayudado a progresar en el gimnasio.»</blockquote>
+        <figcaption>Ashleigh B.<span>Creatine + MBP · agosto de 2026</span></figcaption>
+      </figure>
+      <figure class="rev" style="--n:5">
+        <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+        <blockquote>«Fácil de mezclar con nuestra bebida favorita. El polvo sin sabor es justo eso: no deja regusto raro y se disuelve bien.»</blockquote>
+        <figcaption>Jacqui I.<span>Creatine + MBP · agosto de 2026</span></figcaption>
+      </figure>
+      <figure class="rev" style="--n:5">
+        <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+        <blockquote>«He probado muchas marcas de creatina y esta está a la altura. La textura es buena y la mezcla acompaña bien en la recuperación.»</blockquote>
+        <figcaption>Gerardo S.<span>Creatine + MBP · agosto de 2026</span></figcaption>
+      </figure>
+      <figure class="rev" aria-hidden="true" style="--n:5">
+        <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+        <blockquote>«Llevo más de 20 años tomando este producto. No hay nada igual.»</blockquote>
+        <figcaption>Rhea F.<span>Spectro Multivitamin · junio de 2022</span></figcaption>
+      </figure>
+      <figure class="rev" aria-hidden="true" style="--n:5">
+        <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+        <blockquote>«Está claro que valorar un multivitamínico es algo subjetivo, pero creo sinceramente que tomar Spectro me ha sentado bien, y no me lo quitaría.»</blockquote>
+        <figcaption>Gediminas L.<span>Spectro Multivitamin · enero de 2025</span></figcaption>
+      </figure>
+      <figure class="rev" aria-hidden="true" style="--n:5">
+        <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+        <blockquote>«Un gran producto y muy cómodo para el día a día.»</blockquote>
+        <figcaption>Sharon H.<span>Spectro Multivitamin · abril de 2025</span></figcaption>
+      </figure>
+      <figure class="rev" aria-hidden="true" style="--n:5">
+        <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+        <blockquote>«Es una creatina muy buena. Se disuelve de maravilla y no queda tan arenosa como otras marcas. La he mezclado con agua y con zumo, y sabe bien. Me ha ayudado a progresar en el gimnasio.»</blockquote>
+        <figcaption>Ashleigh B.<span>Creatine + MBP · agosto de 2026</span></figcaption>
+      </figure>
+      <figure class="rev" aria-hidden="true" style="--n:5">
+        <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+        <blockquote>«Fácil de mezclar con nuestra bebida favorita. El polvo sin sabor es justo eso: no deja regusto raro y se disuelve bien.»</blockquote>
+        <figcaption>Jacqui I.<span>Creatine + MBP · agosto de 2026</span></figcaption>
+      </figure>
+      <figure class="rev" aria-hidden="true" style="--n:5">
+        <div class="stars" role="img" aria-label="5 de 5 estrellas"></div>
+        <blockquote>«He probado muchas marcas de creatina y esta está a la altura. La textura es buena y la mezcla acompaña bien en la recuperación.»</blockquote>
+        <figcaption>Gerardo S.<span>Creatine + MBP · agosto de 2026</span></figcaption>
+      </figure>
+    </div>
   </div>
+  <p class="rev-note">Reseñas de clientes en solaray.com, traducidas del inglés. Son de los productos hermanos: el Spectro Energy! y la creatina de España todavía no tienen opiniones.</p>
 </section>
 
 <!-- ================= FAQ ================= -->
-<section class="sec faq" id="faq" style="padding-top:0">
-  <div class="faq-grid">
-    <div class="faq-side reveal">
-      <h2 class="h2 sm">Preguntas frecuentes</h2>
-      <p>Lo que más nos preguntan sobre el pack. Si tomas medicación, consulta siempre con tu médico o farmacéutico.</p>
-      <a class="btn" href="#comprar">Quiero el pack</a>
+<section class="sec faq" id="faq">
+  <div class="faq-wrap">
+    <div class="faq-head reveal">
+      <h2 class="h2">Preguntas frecuentes</h2>
     </div>
-    <div class="reveal">
-      <details class="acc" open><summary>¿Cómo tomo el pack?</summary><div class="acc-body">Spectro Energy!: 2 cápsulas al día con la comida o con un vaso de agua. Opti-5 Magnesium Complex: 1 cápsula al día con la comida o con un vaso de agua. Creatine Monohidrate: medio cacito (2,5 g) o un cacito (5 g) disuelto en medio vaso de agua, antes, durante o después de la actividad.</div></details>
-      <details class="acc"><summary>¿Medio cacito o uno entero?</summary><div class="acc-body">Depende del objetivo. La ficha propone 3-5 g al día como mantenimiento en deporte y 2-3 g al día en suplementación constante. La declaración de rendimiento pide 3 g diarios, que se alcanzan con un cacito (5 g), no con medio (2,5 g).</div></details>
-      <details class="acc"><summary>¿Hay que hacer fase de carga?</summary><div class="acc-body">No es obligatorio. La ficha describe dos protocolos: una fase de carga rápida de 20 g al día repartidos en 4-5 tomas durante 7 días y después 3-5 g al día, o una dosificación constante. Las dos aumentan las reservas de creatina del músculo; cambian la rapidez y las dosis.</div></details>
-      <details class="acc"><summary>¿Cuándo tomo la creatina?</summary><div class="acc-body">En cualquier momento, porque el beneficio depende de la acumulación en los tejidos. La ficha añade un matiz para el deporte: acompañarla de carbohidratos después de una sesión intensa puede incrementar la reposición de glucógeno muscular.</div></details>
-      <details class="acc"><summary>¿Puedo comprar solo uno de los productos?</summary><div class="acc-body">Sí. En «Elige tus productos» marcas los que quieras. Con uno pagas el precio normal; con dos ahorras un 10 %; con los tres, un 15 %.</div></details>
-      <details class="acc"><summary>¿Cuánto me dura?</summary><div class="acc-body">Creatine Monohidrate, 45 días con un cacito al día o 90 con medio. Opti-5 Magnesium Complex, 60 días. Spectro Energy!, 30 días en el formato de 60 cápsulas o 60 días en el de 120.</div></details>
-      <details class="acc"><summary>¿Es apto para veganos? ¿Y sin gluten?</summary><div class="acc-body">Los tres productos son aptos para veganos. Opti-5 Magnesium Complex y Creatine Monohidrate son sin gluten, pero Spectro Energy! contiene gluten, porque lleva parte aérea de trigo y de cebada.</div></details>
-      <details class="acc"><summary>¿La creatina es solo para el gimnasio?</summary><div class="acc-body">La ficha recoge otros usos habituales, como el cuidado nutricional en población adulta mayor o en personas con alimentación vegetariana o vegana, que suelen tener niveles más bajos porque la creatina se encuentra casi solo en carne, pescado y lácteos.</div></details>
-      <details class="acc"><summary>Tomo medicación. ¿Puedo tomarlo?</summary><div class="acc-body">Consulta antes con tu médico o farmacéutico. El magnesio puede disminuir la absorción de algunos medicamentos (tetraciclinas, quinolonas, bisfosfonatos o levotiroxina), así que conviene espaciar las tomas. Con la creatina, la ficha pide valorar riesgo y beneficio en personas con un filtrado glomerular bajo.</div></details>
-      <details class="acc"><summary>¿Cuánto cuesta el envío?</summary><div class="acc-body">El envío es gratuito en pedidos superiores a 50 €, así que el pack completo lo incluye.</div></details>
+    <div class="faq-cols reveal">
+      <div class="faq-col">
+        <details class="acc" open><summary>¿Cómo tomo el pack?</summary><div class="acc-body">Spectro Energy!: 2 cápsulas al día con la comida o con un vaso de agua. Opti-5 Magnesium Complex: 1 cápsula al día con la comida o con un vaso de agua. Creatine Monohidrate: medio cacito (2,5 g) o un cacito (5 g) disuelto en medio vaso de agua, antes, durante o después de la actividad.</div></details>
+        <details class="acc"><summary>¿Medio cacito o uno entero?</summary><div class="acc-body">Depende del objetivo. La ficha propone 3-5 g al día como mantenimiento en deporte y 2-3 g al día en suplementación constante. La declaración de rendimiento pide 3 g diarios, que se alcanzan con un cacito (5 g), no con medio (2,5 g).</div></details>
+        <details class="acc"><summary>¿Hay que hacer fase de carga?</summary><div class="acc-body">No es obligatorio. La ficha describe dos protocolos: una fase de carga rápida de 20 g al día repartidos en 4-5 tomas durante 7 días y después 3-5 g al día, o una dosificación constante. Las dos aumentan las reservas de creatina del músculo; cambian la rapidez y las dosis.</div></details>
+        <details class="acc"><summary>¿Cuándo tomo la creatina?</summary><div class="acc-body">En cualquier momento, porque el beneficio depende de la acumulación en los tejidos. La ficha añade un matiz para el deporte: acompañarla de carbohidratos después de una sesión intensa puede incrementar la reposición de glucógeno muscular.</div></details>
+        <details class="acc"><summary>¿Puedo comprar solo uno de los productos?</summary><div class="acc-body">Sí. En «Elige tus productos» marcas los que quieras. Con uno pagas el precio normal; con dos ahorras un 10 %; con los tres, un 15 %.</div></details>
+      </div>
+      <div class="faq-col">
+        <details class="acc"><summary>¿Cuánto me dura?</summary><div class="acc-body">Creatine Monohidrate, 45 días con un cacito al día o 90 con medio. Opti-5 Magnesium Complex, 60 días. Spectro Energy!, 30 días en el formato de 60 cápsulas o 60 días en el de 120.</div></details>
+        <details class="acc"><summary>¿Es apto para veganos? ¿Y sin gluten?</summary><div class="acc-body">Los tres productos son aptos para veganos. Opti-5 Magnesium Complex y Creatine Monohidrate son sin gluten, pero Spectro Energy! contiene gluten, porque lleva parte aérea de trigo y de cebada.</div></details>
+        <details class="acc"><summary>¿La creatina es solo para el gimnasio?</summary><div class="acc-body">La ficha recoge otros usos habituales, como el cuidado nutricional en población adulta mayor o en personas con alimentación vegetariana o vegana, que suelen tener niveles más bajos porque la creatina se encuentra casi solo en carne, pescado y lácteos.</div></details>
+        <details class="acc"><summary>Tomo medicación. ¿Puedo tomarlo?</summary><div class="acc-body">Consulta antes con tu médico o farmacéutico. El magnesio puede disminuir la absorción de algunos medicamentos (tetraciclinas, quinolonas, bisfosfonatos o levotiroxina), así que conviene espaciar las tomas. Con la creatina, la ficha pide valorar riesgo y beneficio en personas con un filtrado glomerular bajo.</div></details>
+        <details class="acc"><summary>¿Cuánto cuesta el envío?</summary><div class="acc-body">El envío es gratuito en pedidos superiores a 50 €, así que el pack completo lo incluye.</div></details>
+      </div>
     </div>
+    <p class="faq-note reveal">Lo que más nos preguntan sobre el pack. Si tomas medicación, consulta siempre con tu médico o farmacéutico.</p>
   </div>
 </section>
 
